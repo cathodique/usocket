@@ -1,17 +1,19 @@
 {
-  "name": "usocket",
+  "name": "@cathodique/usocket",
   "version": "1.0.1",
-  "description": "unix local sockets with descriptor passing",
+  "description": "unix local sockets with descriptor passing (Now compatible with Electron!)",
   "main": "index.js",
   "scripts": {
     "test": "mocha -R spec",
     "configure": "node-gyp configure",
-    "build": "node-gyp build",
+    "build": "npm run fixnan && node-gyp build",
+    "build-es": "tsc",
+    "fixnan": "sed 's/^#include .nan_scriptorigin\\.h./\\/\\/ #include nan_scriptorigin.h/' ./node_modules/nan/nan.h > ./node_modules/nan/nan.h.new && mv ./node_modules/nan/nan.h.new ./node_modules/nan/nan.h",
     "rebuild": "node-gyp rebuild"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jhs67/usocket.git"
+    "url": "git+https://github.com/cathodique/usocket.git"
   },
   "keywords": [
     "unix",
@@ -23,16 +25,19 @@
   "author": "Jon Spencer <jon@jonspencer.ca>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jhs67/usocket/issues"
+    "url": "https://github.com/cathodique/usocket/issues"
   },
-  "homepage": "https://github.com/jhs67/usocket#readme",
+  "homepage": "https://github.com/cathodique/usocket#readme",
   "devDependencies": {
-    "mocha": "^9.2.2"
+    "@types/debug": "^4.1.12",
+    "@types/node": "^22.10.2",
+    "mocha": "^9.2.2",
+    "typescript": "^5.7.2"
   },
   "dependencies": {
     "bindings": "^1.5.0",
     "debug": "^4.3.4",
-    "nan": "^2.15.0",
+    "nan": "^2.22.0",
     "node-gyp": "^9.0.0"
   }
 }

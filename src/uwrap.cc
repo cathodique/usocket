@@ -464,7 +464,7 @@ namespace uwrap {
 
 				// Create a buffer of any read data.
 				v8::Local<v8::Value> buffer = Nan::Undefined();
-				if (res == 0 || !Nan::NewBuffer(static_cast<char*>(iov[0].iov_base), res).ToLocal(&buffer))
+				if (res == 0 || !Nan::CopyBuffer(static_cast<char*>(iov[0].iov_base), res).ToLocal(&buffer))
 					free(iov[0].iov_base);
 
 				// Convert the descriptors into a v8 array
@@ -676,7 +676,11 @@ namespace uwrap {
 #if defined(__GNUC__) && __GNUC__ >= 8
 _Pragma("GCC diagnostic push") _Pragma("GCC diagnostic ignored \"-Wcast-function-type\"")
 #endif
+#if NODE_MAJOR_VERSION >= 10
+NAN_MODULE_WORKER_ENABLED(uwrap, uwrap::init)
+#else
 NODE_MODULE(uwrap, uwrap::init)
+#endif
 #if defined(__GNUC__) && __GNUC__ >= 8
 _Pragma("GCC diagnostic pop")
 #endif
