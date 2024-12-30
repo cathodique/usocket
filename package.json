@@ -1,6 +1,6 @@
 {
   "name": "@cathodique/usocket",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "unix local sockets with descriptor passing (Now compatible with Electron!)",
   "main": "index.js",
   "scripts": {

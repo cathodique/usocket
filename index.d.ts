@@ -22,7 +22,8 @@ export declare class USocket extends Duplex {
     _write(chunk: USocketWriteChunk, encoding: string | null, callback: Function): void;
     connect(opts: USocketOptions, cb?: () => void): void;
     private _wrapEvent;
-    read(size: number, fdSize?: number): ReadResult | null;
+    read(size: number): ReadResult | null;
+    read(size: number | null, fdSize?: number | null): ReadResult | null;
     unshift(chunk: any, encoding?: BufferEncoding): void;
     unshift(chunk: Buffer | null, fds?: any[]): void;
     write(chunk: any, encoding?: BufferEncoding, cb?: (error: Error | null | undefined) => void): boolean;

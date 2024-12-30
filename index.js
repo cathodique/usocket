@@ -169,12 +169,12 @@ class USocket extends stream_1.Duplex {
         if (!this._wrap)
             return null;
         if (fdSize === undefined)
-            return super.read(size);
+            return super.read(size ?? undefined);
         if (fdSize === null)
             fdSize = this._wrap.fds.length;
         else if (this._wrap.fds.length < fdSize)
             return null;
-        const data = super.read(size);
+        const data = super.read(size ?? undefined);
         if (size && !data)
             return data;
         const fds = this._wrap.fds.splice(0, fdSize);

@@ -164,17 +164,19 @@ export class USocket extends Duplex {
     }
   }
 
-  read(size: number, fdSize?: number): ReadResult | null {
+  read(size: number): ReadResult | null;
+  read(size: number | null, fdSize?: number | null): ReadResult | null;
+  read(size: number | null, fdSize?: number | null): ReadResult | null {
     if (!this._wrap) return null;
 
     if (fdSize === undefined)
-      return super.read(size) as ReadResult | null;
+      return super.read(size ?? undefined) as ReadResult | null;
 
     if (fdSize === null)
       fdSize = this._wrap.fds.length;
     else if (this._wrap.fds.length < fdSize) return null;
 
-    const data = super.read(size);
+    const data = super.read(size ?? undefined);
     if (size && !data) return data as ReadResult;
 
     const fds = this._wrap.fds.splice(0, fdSize);
