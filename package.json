@@ -1,6 +1,6 @@
 {
   "name": "@cathodique/usocket",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "unix local sockets with descriptor passing (Now compatible with Electron!)",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,6 @@
     "configure": "node-gyp configure",
     "build": "node-gyp build",
     "build-es": "tsc",
-    "postinstall": "sed 's/^#include .nan_scriptorigin\\.h./\\/\\/ #include nan_scriptorigin.h/' ./node_modules/nan/nan.h > ./node_modules/nan/nan.h.new && mv ./node_modules/nan/nan.h.new ./node_modules/nan/nan.h",
     "rebuild": "node-gyp rebuild"
   },
   "repository": {
