@@ -6,9 +6,9 @@
   "scripts": {
     "test": "mocha -R spec",
     "configure": "node-gyp configure",
-    "build": "npm run fixnan && node-gyp build",
+    "build": "node-gyp build",
     "build-es": "tsc",
-    "fixnan": "sed 's/^#include .nan_scriptorigin\\.h./\\/\\/ #include nan_scriptorigin.h/' ./node_modules/nan/nan.h > ./node_modules/nan/nan.h.new && mv ./node_modules/nan/nan.h.new ./node_modules/nan/nan.h",
+    "postinstall": "sed 's/^#include .nan_scriptorigin\\.h./\\/\\/ #include nan_scriptorigin.h/' ./node_modules/nan/nan.h > ./node_modules/nan/nan.h.new && mv ./node_modules/nan/nan.h.new ./node_modules/nan/nan.h",
     "rebuild": "node-gyp rebuild"
   },
   "repository": {
