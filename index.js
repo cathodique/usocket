@@ -68,10 +68,10 @@ class USocket extends stream_1.Duplex {
         let data;
         let fds;
         let cb;
-        if (Buffer.isBuffer(chunk.data)) {
+        if (Buffer.isBuffer(chunk)) {
             data = chunk.data;
         }
-        else if (Array.isArray(chunk.fds)) {
+        else if (Array.isArray(chunk)) {
             fds = chunk.fds;
         }
         else {

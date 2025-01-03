@@ -61,9 +61,9 @@ export class USocket extends Duplex {
     let fds: any[] | undefined;
     let cb: Function | undefined;
 
-    if (Buffer.isBuffer(chunk.data)) {
+    if (Buffer.isBuffer(chunk)) {
       data = chunk.data;
-    } else if (Array.isArray(chunk.fds)) {
+    } else if (Array.isArray(chunk)) {
       fds = chunk.fds;
     } else {
       cb = chunk.callback;
